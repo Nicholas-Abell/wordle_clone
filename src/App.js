@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import Board from './Components/Board.js';
+import KeyBoard from './Components/KeyBoard.js';
+import React, { useState } from 'react';
+import { boardDefault } from './Components/Words.js';
 
 function App() {
+
+  const [board, setBoard] = useState(boardDefault);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Board />
+      <KeyBoard />
     </div>
   );
 }
