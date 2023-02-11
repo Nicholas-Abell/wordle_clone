@@ -1,0 +1,26 @@
+.keyboard {
+
+    margin-top: 2rem;
+
+    .line {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+
+        &__key {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: solid black;
+            min-width: 3rem;
+            min-height: 3rem;
+
+            &:hover {
+                background-color: black;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+}
