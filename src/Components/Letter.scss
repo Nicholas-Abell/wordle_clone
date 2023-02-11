@@ -7,4 +7,19 @@
     align-items: center;
     justify-content: center;
     font-size: 4rem;
+
+    &--wrong {
+        border: solid red;
+        color: red;
+    }
+
+    &--close {
+        border: solid rgb(180, 153, 30);
+        color: rgb(180, 153, 30);
+    }
+
+    &--correct {
+        border: solid palegreen;
+        color: palegreen;
+    }
 }
