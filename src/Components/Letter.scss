@@ -9,17 +9,14 @@
     font-size: 4rem;
 
     &--wrong {
-        border: solid red;
-        color: red;
+        background-color: red;
     }
 
     &--close {
-        border: solid rgb(180, 153, 30);
-        color: rgb(180, 153, 30);
+        background-color: rgb(180, 153, 30);
     }
 
     &--correct {
-        border: solid palegreen;
-        color: palegreen;
+        background-color: palegreen;
     }
 }

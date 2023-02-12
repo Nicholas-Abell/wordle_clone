@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
 
-const Key = ({ keyValue }) => {
+const Key = ({ keyValue, disabled }) => {
     const { board, setBoard, currentAttempt, setCurrentAttempt, onSelectLetter, onEnter, onDelete } = useContext(AppContext);
 
     const selectLetter = () => {
@@ -14,7 +14,7 @@ const Key = ({ keyValue }) => {
         }
     }
     return (
-        <div className="line__key" onClick={selectLetter}>{keyValue}</div>
+        <div className={!disabled ? 'line__key' : 'line__key disabled'} onClick={selectLetter}>{keyValue}</div>
     )
 }
 

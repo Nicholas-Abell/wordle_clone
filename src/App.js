@@ -1,9 +1,10 @@
 import './App.css';
 import Board from './Components/Board.js';
 import KeyBoard from './Components/Keyboard.js';
+import GameOverScreen from './Components/GameOverScreen.js';
 import React, { useState, createContext, useEffect } from 'react';
 import { boardDefault } from './Components/Words.js';
-import { generateWordSet } from './Components/Words.js';
+import { generateWordSet, testArr } from './Components/Words.js';
 
 export const AppContext = createContext();
 
@@ -11,17 +12,21 @@ function App() {
 
   const [board, setBoard] = useState(boardDefault);
   const [currentAttempt, setCurrentAttempt] = useState({ attempt: 0, letterPos: 0 });
-  const [wordSet, setWordSet] = useState(new Set());
-
-  const correctWord = 'RIGHT';
+  const [correctWord, setCorrectWord] = useState([]);
+  const [disabledLetters, setDisabledLetters] = useState([]);
+  const [gameOver, setGameOver] = useState({ gameOver: false, gameWon: false });
 
   useEffect(() => {
-    generateWordSet().then((words) => {
-      console.log(words);
-      setWordSet(words.wordSet);
-      console.log(wordSet);
-    });
+    setCorrectWord(testArr[Math.floor(Math.random() * testArr.length)]);
   }, []);
+
+  useEffect(() => {
+    console.log(correctWord)
+  }, [correctWord]);
+
+  useEffect(() => {
+    console.log(currentAttempt.attempt);
+  }, [currentAttempt.attempt]);
 
   const onSelectLetter = (keyValue) => {
     if (currentAttempt.letterPos > 4) return;
@@ -40,27 +45,31 @@ function App() {
   }
 
   const onEnter = () => {
-    if (currentAttempt.letterPos > 5) return;
+    if (currentAttempt.letterPos !== 5) return;
 
     let currentWord = '';
-    for (let i; i < 5; i++) {
+
+    for (let i = 0; i < 5; i++) {
       currentWord += board[currentAttempt.attempt][i]
     }
 
-    if (wordSet.has(currentWord.toLowerCase())) {
-      setCurrentAttempt({ attempt: currentAttempt.attempt + 1, letterPos: 0 });
-    } else {
-      console.log('word not found');
+    setCurrentAttempt({ attempt: currentAttempt.attempt + 1, letterPos: 0 });
+
+    if (currentWord === correctWord) {
+      setGameOver({ gameOver: true, gameWon: true });
+      return;
     }
 
-    setCurrentAttempt({ attempt: currentAttempt.attempt + 1, letterPos: 0 });
+    if (currentAttempt.attempt === 4) {
+      setGameOver({ gameOver: true, gameWon: false });
+    }
   }
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ board, setBoard, currentAttempt, setCurrentAttempt, onSelectLetter, onDelete, onEnter, correctWord }}>
+      <AppContext.Provider value={{ board, setBoard, currentAttempt, setCurrentAttempt, onSelectLetter, onDelete, onEnter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver }}>
         <Board />
-        <KeyBoard />
+        {gameOver.gameOver ? <GameOverScreen /> : <KeyBoard />}
       </AppContext.Provider>
     </div>
   );

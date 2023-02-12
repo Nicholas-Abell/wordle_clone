@@ -4,7 +4,7 @@ import './Keyboard.scss';
 import Key from './Key';
 
 const KeyBoard = () => {
-    const { onSelectLetter, onEnter, onDelete } = useContext(AppContext);
+    const { onSelectLetter, onEnter, onDelete, disabledLetters } = useContext(AppContext);
 
     const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -49,7 +49,7 @@ const KeyBoard = () => {
                 {
                     keys1.map((key) => {
                         return (
-                            <Key keyValue={key} />
+                            <Key keyValue={key} disabled={disabledLetters.includes(key)} />
                         )
                     })
                 }
@@ -58,7 +58,7 @@ const KeyBoard = () => {
                 {
                     keys2.map((key) => {
                         return (
-                            <Key keyValue={key} />
+                            <Key keyValue={key} disabled={disabledLetters.includes(key)} />
                         )
                     })
                 }
@@ -68,7 +68,7 @@ const KeyBoard = () => {
                 {
                     keys3.map((key) => {
                         return (
-                            <Key keyValue={key} />
+                            <Key keyValue={key} disabled={disabledLetters.includes(key)} />
                         )
                     })
                 }
