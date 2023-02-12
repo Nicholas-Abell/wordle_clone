@@ -1,14 +1,34 @@
 import { AppContext } from "../App";
 import React, { useContext } from "react";
+import './GameOverScreen.scss';
 
 const GameOverScreen = () => {
-    const { gameOver, correctWord, currentAttempt } = useContext(AppContext);
+    const { gameOver, correctWord, currentAttempt, onReset } = useContext(AppContext);
 
     return (
         <div className="gameOverScreen">
-            <h2>{gameOver.gameWon ? 'You Win' : 'You Lose'}</h2>
-            <h3>The correct word: {correctWord}</h3>
-            <h2>#of tries: {currentAttempt.attempt}</h2>
+            <div>
+                <h2
+                    className="gameOverScreen__winLose">
+                    {
+                        gameOver.gameWon
+                            ? <p>You <bold style={{ color: 'green' }}>Win</bold></p>
+                            : <p>You <bold style={{ color: 'red' }}>Lose</bold></p>
+                    }
+                </h2>
+                <h3
+                    className="gameOverScreen__correctWord">
+                    The correct word: {correctWord}
+                </h3>
+                <h3 className="gameOverScreen__tries">
+                    #of tries: {currentAttempt.attempt}
+                </h3>
+            </div>
+            <button
+                className="gameOverScreen__button"
+                onClick={onReset}>
+                Reset
+            </button>
         </div>
     )
 }

@@ -1,0 +1,26 @@
+.gameOverScreen {
+    border: solid black;
+    width: 100%;
+    text-align: center;
+    min-height: 160px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    &__winLose {
+        display: block;
+    }
+
+    &__correctWord {
+        display: block;
+    }
+
+    &__button {
+        cursor: pointer;
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        max-width: 50%;
+    }
+}

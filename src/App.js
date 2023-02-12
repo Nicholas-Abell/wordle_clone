@@ -4,7 +4,7 @@ import KeyBoard from './Components/Keyboard.js';
 import GameOverScreen from './Components/GameOverScreen.js';
 import React, { useState, createContext, useEffect } from 'react';
 import { boardDefault } from './Components/Words.js';
-import { generateWordSet, testArr } from './Components/Words.js';
+import { wordBank } from './Components/wordBank.js';
 
 export const AppContext = createContext();
 
@@ -17,7 +17,7 @@ function App() {
   const [gameOver, setGameOver] = useState({ gameOver: false, gameWon: false });
 
   useEffect(() => {
-    setCorrectWord(testArr[Math.floor(Math.random() * testArr.length)]);
+    setCorrectWord(wordBank[Math.floor(Math.random() * wordBank.length)].toUpperCase());
   }, []);
 
   useEffect(() => {
@@ -44,6 +44,10 @@ function App() {
     setCurrentAttempt({ ...currentAttempt, letterPos: currentAttempt.letterPos - 1 })
   }
 
+  const onReset = () => {
+    window.location.reload();
+  }
+
   const onEnter = () => {
     if (currentAttempt.letterPos !== 5) return;
 
@@ -60,14 +64,14 @@ function App() {
       return;
     }
 
-    if (currentAttempt.attempt === 4) {
+    if (currentAttempt.attempt === 5) {
       setGameOver({ gameOver: true, gameWon: false });
     }
   }
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ board, setBoard, currentAttempt, setCurrentAttempt, onSelectLetter, onDelete, onEnter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver }}>
+      <AppContext.Provider value={{ board, setBoard, currentAttempt, setCurrentAttempt, onSelectLetter, onDelete, onReset, onEnter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver }}>
         <Board />
         {gameOver.gameOver ? <GameOverScreen /> : <KeyBoard />}
       </AppContext.Provider>
