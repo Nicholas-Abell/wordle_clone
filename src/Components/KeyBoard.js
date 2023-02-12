@@ -64,7 +64,7 @@ const KeyBoard = () => {
                 }
             </div>
             <div className="line">
-                <Key keyValue={'Enter'} />
+                <Key keyValue={'Enter'} className={'line__key--special'} />
                 {
                     keys3.map((key) => {
                         return (
@@ -72,7 +72,7 @@ const KeyBoard = () => {
                         )
                     })
                 }
-                <Key keyValue={'Delete'} />
+                <Key keyValue={'Delete'} className={'line__key--special'} />
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Board from './Components/Board.js';
 import KeyBoard from './Components/Keyboard.js';
 import GameOverScreen from './Components/GameOverScreen.js';
