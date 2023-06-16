@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../App";
 
 const Key = ({ keyValue, disabled }) => {
-    const { board, setBoard, currentAttempt, setCurrentAttempt, onSelectLetter, onEnter, onDelete } = useContext(AppContext);
+    const { onSelectLetter, onEnter, onDelete } = useContext(AppContext);
 
     const selectLetter = () => {
         if (keyValue === 'Enter') {
